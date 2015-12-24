@@ -36,7 +36,11 @@ class ViewController: UIViewController, QRCodeReaderViewControllerDelegate {
       reader.delegate               = self
 
       reader.completionBlock = { (result: QRCodeReaderResult?) in
-        print("Completion with result: \(result!.value) of type \(result!.type)")
+        if let res = result {
+            print("Completion with result: \(res.value) of type \(res.type)")
+        }else{
+            print("user cancel...")
+        }
       }
 
       presentViewController(reader, animated: true, completion: nil)
